@@ -115,6 +115,11 @@ module MiniMagick
       f.close if f
     end
 
+    #mogrify -type collides with Object#type
+    def image_type(*args)
+      method_missing(:type, *args)
+    end
+
     # If an unknown method is called then it is sent through the morgrify program
     # Look here to find all the commands (http://www.imagemagick.org/script/mogrify.php)
     def method_missing(symbol, *args)
